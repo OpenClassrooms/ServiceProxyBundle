@@ -1,6 +1,6 @@
 {
-  "name": "openclassrooms/proxy-service-bundle",
-  "description": "Proxy Service Symfony2 Bundle",
+  "name": "openclassrooms/service-proxy-bundle",
+  "description": "Service Proxy Symfony2 Bundle",
   "type": "symfony-bundle",
   "license": "MIT",
   "authors": [
@@ -25,8 +25,9 @@
   },
   "require": {
     "php": ">=5.6",
-    "openclassrooms/proxy-service" : "dev-master",
-    "openclassrooms/doctrine-cache-extension-bundle" : "dev-master"
+    "openclassrooms/service-proxy" : "1.0.*@dev",
+    "openclassrooms/doctrine-cache-extension": "1.0.*@dev",
+    "openclassrooms/doctrine-cache-extension-bundle" : "1.0.*@dev"
   },
   "require-dev": {
     "fabpot/php-cs-fixer": "1.*",
