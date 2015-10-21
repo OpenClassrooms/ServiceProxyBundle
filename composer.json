@@ -1,0 +1,42 @@
+{
+  "name": "openclassrooms/proxy-service-bundle",
+  "description": "Proxy Service Symfony2 Bundle",
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Romain Kuzniak",
+      "email": "romain.kuzniak@openclassrooms.com"
+    },
+    {
+      "name": "OpenClassrooms",
+      "email": "tech@openclassrooms.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "OpenClassrooms\\ServiceProxyBundle\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "OpenClassrooms\\ServiceProxyBundle\\Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "php": ">=5.6",
+    "openclassrooms/proxy-service" : "dev-master",
+    "openclassrooms/doctrine-cache-extension-bundle" : "dev-master"
+  },
+  "require-dev": {
+    "fabpot/php-cs-fixer": "1.*",
+    "mockery/mockery": "dev-master",
+    "phpunit/phpunit": "~4.0",
+    "satooshi/php-coveralls": "dev-master"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  }
+}
