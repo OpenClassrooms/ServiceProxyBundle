@@ -39,5 +39,11 @@
                 <argument type="service" id="openclassrooms.service_proxy.base_service_proxy_factory"/>
             </call>
         </service>
+        <service id="openclassrooms.service_proxy.cache_warmer.service_proxy_cache_warmer" class="OpenClassrooms\Bundle\ServiceProxyBundle\CacheWarmer\ServiceProxyCacheWarmer">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.cache_warmer"/>
+        </service>
     </services>
 </container>

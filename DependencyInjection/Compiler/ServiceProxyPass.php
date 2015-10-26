@@ -2,6 +2,7 @@
 
 namespace OpenClassrooms\Bundle\ServiceProxyBundle\DependencyInjection\Compiler;
 
+use OpenClassrooms\Bundle\ServiceProxyBundle\CacheWarmer\ServiceProxyCacheWarmer;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -29,6 +30,7 @@ class ServiceProxyPass implements CompilerPassInterface
 
         foreach ($taggedServices as $taggedServiceName => $tagParameters) {
             $this->buildServiceProxyFactoryDefinition($taggedServiceName, $tagParameters);
+            ServiceProxyCacheWarmer::$serviceProxyIds[] = $taggedServiceName;
         }
     }
 
