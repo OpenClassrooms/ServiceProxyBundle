@@ -1,0 +1,43 @@
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="openclassrooms.service_proxy.proxy.strategy.response.service_proxy_strategy_response_builder" class="OpenClassrooms\ServiceProxy\Proxy\Strategy\Response\ServiceProxyStrategyResponseBuilder" public="false"/>
+        <service id="openclassrooms.service_proxy.proxy.strategy.request.service_proxy_strategy_request_builder" class="OpenClassrooms\ServiceProxy\Proxy\Strategy\Request\ServiceProxyStrategyRequestBuilder" public="false"/>
+        <service id="openclassrooms.service_proxy.proxy.strategy.service_proxy_cache_strategy" class="OpenClassrooms\ServiceProxy\Proxy\Strategy\ServiceProxyCacheStrategy" public="false">
+            <call method="setServiceProxyStrategyResponseBuilder">
+                <argument type="service" id="openclassrooms.service_proxy.proxy.strategy.response.service_proxy_strategy_response_builder"/>
+            </call>
+        </service>
+
+        <service id="openclassrooms.service_proxy.proxy.proxy_generator.service_proxy_generator" class="OpenClassrooms\ServiceProxy\Proxy\ProxyGenerator\ServiceProxyGenerator" public="false">
+            <call method="setAnnotationReader">
+                <argument type="service" id="annotations.reader"/>
+            </call>
+            <call method="setCacheStrategy">
+                <argument type="service" id="openclassrooms.service_proxy.proxy.strategy.service_proxy_cache_strategy"/>
+            </call>
+            <call method="setServiceProxyStrategyRequestBuilder">
+                <argument type="service" id="openclassrooms.service_proxy.proxy.strategy.request.service_proxy_strategy_request_builder"/>
+            </call>
+        </service>
+        <service id="openclassrooms.service_proxy.proxy.factory.service_proxy_factory" class="OpenClassrooms\ServiceProxy\Proxy\Factory\ProxyFactory" public="false">
+            <call method="setGenerator">
+                <argument type="service" id="openclassrooms.service_proxy.proxy.proxy_generator.service_proxy_generator"/>
+            </call>
+        </service>
+
+        <service id="openclassrooms.service_proxy.base_service_proxy_factory" class="OpenClassrooms\ServiceProxy\ServiceProxyFactory" public="false">
+            <call method="setProxyFactory">
+                <argument type="service" id="openclassrooms.service_proxy.proxy.factory.service_proxy_factory"/>
+            </call>
+        </service>
+
+        <service id="openclassrooms.service_proxy.service_proxy_factory" class="OpenClassrooms\Bundle\ServiceProxyBundle\Services\Proxy\ServiceProxyFactory" scope="prototype">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <call method="setBaseServiceProxyFactory">
+                <argument type="service" id="openclassrooms.service_proxy.base_service_proxy_factory"/>
+            </call>
+        </service>
+    </services>
+</container>

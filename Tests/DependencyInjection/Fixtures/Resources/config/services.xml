@@ -1,0 +1,12 @@
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="annotations.reader" class="Doctrine\Common\Annotations\AnnotationReader"/>
+        <service id="openclassrooms.service_proxy.tests.services.class_stub" class="OpenClassrooms\Bundle\ServiceProxyBundle\Tests\DependencyInjection\Fixtures\Services\ClassStub"/>
+        <service id="openclassrooms.service_proxy.tests.services.class_tagged_stub" class="OpenClassrooms\Bundle\ServiceProxyBundle\Tests\DependencyInjection\Fixtures\Services\ClassTaggedStub">
+            <tag name="openclassrooms.service_proxy"/>
+        </service>
+        <service id="openclassrooms.service_proxy.tests.services.cache_class_tagged_stub" class="OpenClassrooms\Bundle\ServiceProxyBundle\Tests\DependencyInjection\Fixtures\Services\CacheClassStub">
+            <tag name="openclassrooms.service_proxy"/>
+        </service>
+    </services>
+</container>

@@ -1,0 +1,8 @@
+doctrine_cache:
+    providers:
+        default_array_cache:
+            type: array
+        specific_array_cache:
+            type: array
+openclassrooms_service_proxy:
+    default_cache: doctrine_cache.providers.default_array_cache
