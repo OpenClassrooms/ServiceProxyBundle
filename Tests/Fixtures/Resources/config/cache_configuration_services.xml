@@ -1,9 +1,9 @@
 <container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="openclassrooms.service_proxy.tests.configuration_cache_class_stub" class="OpenClassrooms\Bundle\ServiceProxyBundle\Tests\DependencyInjection\Fixtures\Services\CacheClassStub">
+        <service id="openclassrooms.service_proxy.tests.configuration_cache_class_stub" class="OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services\CacheClassStub">
             <tag name="openclassrooms.service_proxy"/>
         </service>
-        <service id="openclassrooms.service_proxy.tests.configuration_sepecific_cache_class_stub" class="OpenClassrooms\Bundle\ServiceProxyBundle\Tests\DependencyInjection\Fixtures\Services\CacheClassStub">
+        <service id="openclassrooms.service_proxy.tests.configuration_sepecific_cache_class_stub" class="OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services\CacheClassStub">
             <tag name="openclassrooms.service_proxy" cache="doctrine_cache.providers.specific_array_cache"/>
         </service>
     </services>

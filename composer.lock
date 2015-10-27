@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2571af337b5765ddba4b250ae2757fd7",
+    "hash": "62444fbae419f90ea77d86967e4c3193",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -862,12 +862,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenClassrooms/ServiceProxy.git",
-                "reference": "3d6b2d6ca9c71e8a86e744867578a3e6fe8a730d"
+                "reference": "2cbc4d9706c82fcb99758f2dbced6eb45f47b107"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenClassrooms/ServiceProxy/zipball/3d6b2d6ca9c71e8a86e744867578a3e6fe8a730d",
-                "reference": "3d6b2d6ca9c71e8a86e744867578a3e6fe8a730d",
+                "url": "https://api.github.com/repos/OpenClassrooms/ServiceProxy/zipball/2cbc4d9706c82fcb99758f2dbced6eb45f47b107",
+                "reference": "2cbc4d9706c82fcb99758f2dbced6eb45f47b107",
                 "shasum": ""
             },
             "require": {
@@ -910,7 +910,7 @@
                 }
             ],
             "description": "Library",
-            "time": "2015-10-21 15:50:36"
+            "time": "2015-10-27 10:36:18"
         },
         {
             "name": "psr/log",
@@ -2802,16 +2802,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.14",
+            "version": "4.8.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "b4900675926860bef091644849305399b986efa2"
+                "reference": "625f8c345606ed0f3a141dfb88f4116f0e22978e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b4900675926860bef091644849305399b986efa2",
-                "reference": "b4900675926860bef091644849305399b986efa2",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/625f8c345606ed0f3a141dfb88f4116f0e22978e",
+                "reference": "625f8c345606ed0f3a141dfb88f4116f0e22978e",
                 "shasum": ""
             },
             "require": {
@@ -2870,7 +2870,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-10-17 15:03:30"
+            "time": "2015-10-23 06:48:33"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

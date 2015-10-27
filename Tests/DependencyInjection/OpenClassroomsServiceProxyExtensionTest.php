@@ -2,14 +2,31 @@
 
 namespace OpenClassrooms\Bundle\ServiceProxyBundle\Tests\DependencyInjection;
 
-use OpenClassrooms\Bundle\ServiceProxyBundle\Tests\DependencyInjection\Fixtures\Services\ClassStub;
+use OpenClassrooms\Bundle\ServiceProxyBundle\Tests\ContainerTestUtil;
+use OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services\ClassStub;
 use OpenClassrooms\ServiceProxy\ServiceProxyInterface;
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
  */
-class OpenClassroomsServiceProxyExtensionTest extends AbstractDependencyInjectionTest
+class OpenClassroomsServiceProxyExtensionTest extends \PHPUnit_Framework_TestCase
 {
+    use ContainerTestUtil;
+
+    /**
+     * @test
+     * @expectedException \RuntimeException
+     */
+    public function NotWritable_ThrowException()
+    {
+        $fs = new Filesystem();
+        $fs->remove(self::$kernelCacheDir);
+        $fs->mkdir(self::$kernelCacheDir, 0000);
+        $this->initContainer();
+        $this->container->compile();
+    }
+
     /**
      * @test
      */
@@ -32,6 +49,7 @@ class OpenClassroomsServiceProxyExtensionTest extends AbstractDependencyInjectio
     protected function setUp()
     {
         $this->initContainer();
+        $this->serviceLoader->load('services.xml');
         $this->container->compile();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenClassrooms\Bundle\ServiceProxyBundle\Tests\DependencyInjection\Fixtures\Services;
+namespace OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>

@@ -16,7 +16,7 @@ class ServiceProxyCacheWarmer extends CacheWarmer
     private $container;
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function warmUp($cacheDir)
     {
@@ -27,7 +27,7 @@ class ServiceProxyCacheWarmer extends CacheWarmer
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function isOptional()
     {

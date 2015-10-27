@@ -2,6 +2,7 @@
 
 namespace OpenClassrooms\Bundle\ServiceProxyBundle\Tests\DependencyInjection;
 
+use OpenClassrooms\Bundle\ServiceProxyBundle\Tests\ContainerTestUtil;
 use OpenClassrooms\DoctrineCacheExtension\CacheProviderDecorator;
 use OpenClassrooms\ServiceProxy\ServiceProxyCacheInterface;
 use OpenClassrooms\ServiceProxy\ServiceProxyInterface;
@@ -9,8 +10,10 @@ use OpenClassrooms\ServiceProxy\ServiceProxyInterface;
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
  */
-class CacheOpenClassroomsServiceProxyExtensionTest extends AbstractDependencyInjectionTest
+class CacheOpenClassroomsServiceProxyExtensionTest extends \PHPUnit_Framework_TestCase
 {
+    use ContainerTestUtil;
+
     /**
      * @test
      * @expectedException \OpenClassrooms\Bundle\ServiceProxyBundle\Services\Proxy\NotDefinedCacheException
@@ -69,6 +72,7 @@ class CacheOpenClassroomsServiceProxyExtensionTest extends AbstractDependencyInj
     protected function setUp()
     {
         $this->initContainer();
+        $this->serviceLoader->load('services.xml');
         $this->serviceLoader->load('cache_configuration_services.xml');
     }
 }
