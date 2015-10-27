@@ -37,6 +37,7 @@ class ServiceProxyFactory implements ServiceProxyFactoryInterface
 
     /**
      * @return CacheProviderDecorator
+     * @throws NotDefinedCacheException
      */
     private function buildCache($class, array $tagParameters)
     {

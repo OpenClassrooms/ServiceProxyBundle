@@ -3,6 +3,7 @@
 namespace OpenClassrooms\Bundle\ServiceProxyBundle;
 
 use OpenClassrooms\Bundle\ServiceProxyBundle\DependencyInjection\Compiler\ServiceProxyPass;
+use OpenClassrooms\Bundle\ServiceProxyBundle\DependencyInjection\OpenClassroomsServiceProxyExtension;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -18,4 +19,13 @@ class OpenClassroomsServiceProxyBundle extends Bundle
 
         $container->addCompilerPass(new ServiceProxyPass(), PassConfig::TYPE_BEFORE_REMOVING);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getContainerExtension()
+    {
+        return new OpenClassroomsServiceProxyExtension();
+    }
+
 }

@@ -11,26 +11,17 @@ use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmer;
 class ServiceProxyCacheWarmer extends CacheWarmer
 {
     /**
-     * @var string[]
-     */
-    public static $serviceProxyIds = [];
-
-    /**
      * @var ContainerInterface
      */
     private $container;
-
-    public function __construct()
-    {
-        self::$serviceProxyIds = [];
-    }
 
     /**
      * @inheritDoc
      */
     public function warmUp($cacheDir)
     {
-        foreach (self::$serviceProxyIds as $serviceProxyId) {
+        $serviceProxyIds = $this->container->getParameter('openclassrooms.service_proxy.service_proxy_ids');
+        foreach ($serviceProxyIds as $serviceProxyId) {
             $this->container->get($serviceProxyId);
         }
     }

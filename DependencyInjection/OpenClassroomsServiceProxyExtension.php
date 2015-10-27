@@ -18,6 +18,15 @@ class OpenClassroomsServiceProxyExtension extends Extension
         $loader->load('services.xml');
 
         $config = $this->processConfiguration(new Configuration(), $config);
+
+        $cacheDir = $container->getParameterBag()->resolveValue($config['cache_dir']);
+        if (!is_dir($cacheDir)) {
+            if (false === @mkdir($cacheDir, 0777, true)) {
+                throw new \RuntimeException(sprintf('Could not create cache directory "%s".', $cacheDir));
+            }
+        }
+        $container->setParameter('openclassrooms.service_proxy.cache_dir', $cacheDir);
+
         if (null !== $config['default_cache']) {
             $container->setParameter('openclassrooms.service_proxy.default_cache', $config['default_cache']);
         }
