@@ -8,7 +8,6 @@
                 <argument type="service" id="openclassrooms.service_proxy.proxy.strategy.response.service_proxy_strategy_response_builder"/>
             </call>
         </service>
-
         <service id="openclassrooms.service_proxy.proxy.proxy_generator.service_proxy_generator" class="OpenClassrooms\ServiceProxy\Proxy\ProxyGenerator\ServiceProxyGenerator" public="false">
             <call method="setAnnotationReader">
                 <argument type="service" id="annotations.reader"/>
@@ -20,7 +19,6 @@
                 <argument type="service" id="openclassrooms.service_proxy.proxy.strategy.request.service_proxy_strategy_request_builder"/>
             </call>
         </service>
-
         <service id="openclassrooms.service_proxy.proxy.factory.service_proxy_factory" class="OpenClassrooms\ServiceProxy\Proxy\Factory\ProxyFactory" public="false">
             <argument>%openclassrooms.service_proxy.cache_dir%</argument>
             <call method="setGenerator">
@@ -28,7 +26,7 @@
             </call>
         </service>
 
-        <service id="openclassrooms.service_proxy.base_service_proxy_factory" class="OpenClassrooms\ServiceProxy\ServiceProxyFactory" public="false">
+        <service id="openclassrooms.service_proxy.service_proxy_builder" class="OpenClassrooms\ServiceProxy\ServiceProxyBuilder">
             <call method="setProxyFactory">
                 <argument type="service" id="openclassrooms.service_proxy.proxy.factory.service_proxy_factory"/>
             </call>
@@ -38,10 +36,11 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <call method="setBaseServiceProxyFactory">
-                <argument type="service" id="openclassrooms.service_proxy.base_service_proxy_factory"/>
+            <call method="setServiceProxyBuilder">
+                <argument type="service" id="openclassrooms.service_proxy.service_proxy_builder"/>
             </call>
         </service>
+
         <service id="openclassrooms.service_proxy.cache_warmer.service_proxy_cache_warmer" class="OpenClassrooms\Bundle\ServiceProxyBundle\CacheWarmer\ServiceProxyCacheWarmer">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>

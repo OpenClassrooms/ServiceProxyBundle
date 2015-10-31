@@ -16,18 +16,6 @@ class CacheOpenClassroomsServiceProxyExtensionTest extends \PHPUnit_Framework_Te
 
     /**
      * @test
-     * @expectedException \OpenClassrooms\Bundle\ServiceProxyBundle\Services\Proxy\NotDefinedCacheException
-     */
-    public function WithCacheConfigurationWithoutCacheContext_CacheUseCase_ThrowException()
-    {
-        $this->configLoader->load('DefaultConfiguration.yml');
-        $this->container->compile();
-
-        $this->container->get('openclassrooms.service_proxy.tests.services.cache_class_tagged_stub');
-    }
-
-    /**
-     * @test
      */
     public function WithCacheConfigurationDefaultCache_CacheUseCase_ReturnUseCaseProxy()
     {

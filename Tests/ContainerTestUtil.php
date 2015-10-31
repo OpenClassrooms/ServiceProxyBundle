@@ -6,7 +6,6 @@ use Doctrine\Bundle\DoctrineCacheBundle\DependencyInjection\DoctrineCacheExtensi
 use Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle;
 use OpenClassrooms\Bundle\DoctrineCacheExtensionBundle\DependencyInjection\OpenClassroomsDoctrineCacheExtensionExtension;
 use OpenClassrooms\Bundle\DoctrineCacheExtensionBundle\OpenClassroomsDoctrineCacheExtensionBundle;
-use OpenClassrooms\Bundle\ServiceProxyBundle\DependencyInjection\OpenClassroomsServiceProxyExtension;
 use OpenClassrooms\Bundle\ServiceProxyBundle\OpenClassroomsServiceProxyBundle;
 use OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services\CacheClassStub;
 use OpenClassrooms\ServiceProxy\ServiceProxyCacheInterface;
@@ -75,10 +74,10 @@ trait ContainerTestUtil
 
     private function initServiceProxyBundle()
     {
-        $serviceProxyExtension = new OpenClassroomsServiceProxyExtension();
+        $bundle = new OpenClassroomsServiceProxyBundle();
+        $serviceProxyExtension = $bundle->getContainerExtension();
         $this->container->registerExtension($serviceProxyExtension);
         $this->container->loadFromExtension('openclassrooms_service_proxy');
-        $bundle = new OpenClassroomsServiceProxyBundle();
         $bundle->build($this->container);
     }
 

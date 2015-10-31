@@ -21,11 +21,10 @@ class OpenClassroomsServiceProxyBundle extends Bundle
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getContainerExtension()
     {
         return new OpenClassroomsServiceProxyExtension();
     }
-
 }
