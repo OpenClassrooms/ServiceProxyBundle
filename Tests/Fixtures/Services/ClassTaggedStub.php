@@ -8,10 +8,20 @@ namespace OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services;
 class ClassTaggedStub
 {
     /**
+     * @var ClassStub
+     */
+    private $anInjectedParameter;
+
+    /**
      * @return bool
      */
     public function aMethod()
     {
-        return true;
+        return $this->anInjectedParameter;
+    }
+
+    public function setAnInjectedParameter($anInjectedParameter)
+    {
+        $this->anInjectedParameter = $anInjectedParameter;
     }
 }

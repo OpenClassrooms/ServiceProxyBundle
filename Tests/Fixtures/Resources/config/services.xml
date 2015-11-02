@@ -2,6 +2,9 @@
     <services>
         <service id="openclassrooms.service_proxy.tests.services.class_stub" class="OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services\ClassStub"/>
         <service id="openclassrooms.service_proxy.tests.services.class_tagged_stub" class="OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services\ClassTaggedStub">
+            <call method="setAnInjectedParameter">
+                <argument type="service" id="openclassrooms.service_proxy.tests.services.class_stub"/>
+            </call>
             <tag name="openclassrooms.service_proxy"/>
         </service>
         <service id="openclassrooms.service_proxy.tests.services.cache_class_tagged_stub" class="OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services\CacheClassStub">
