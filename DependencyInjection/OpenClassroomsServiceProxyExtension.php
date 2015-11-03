@@ -2,6 +2,7 @@
 
 namespace OpenClassrooms\Bundle\ServiceProxyBundle\DependencyInjection;
 
+use ProxyManager\Configuration as ProxyConfiguration;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
@@ -16,20 +17,32 @@ class OpenClassroomsServiceProxyExtension extends Extension
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/'));
         $loader->load('services.xml');
-
         $config = $this->processConfiguration(new Configuration(), $config);
 
-        $cacheDir = $container->getParameterBag()->resolveValue($config['cache_dir']);
+        $proxyConfiguration = $this->buildProxyConfiguration(
+            $container->getParameterBag()->resolveValue($config['cache_dir'])
+        );
+        $container->setParameter('openclassrooms.service_proxy.proxy_factory_configuration', $proxyConfiguration);
+
+        if (null !== $config['default_cache']) {
+            $container->setParameter('openclassrooms.service_proxy.default_cache', $config['default_cache']);
+        }
+    }
+
+    /**
+     * @return ProxyConfiguration
+     */
+    private function buildProxyConfiguration($cacheDir)
+    {
         if (!is_dir($cacheDir)) {
             if (false === @mkdir($cacheDir, 0777, true)) {
                 throw new \RuntimeException(sprintf('Could not create cache directory "%s".', $cacheDir));
             }
         }
-        $container->setParameter('openclassrooms.service_proxy.cache_dir', $cacheDir);
+        $configuration = new ProxyConfiguration();
+        $configuration->setProxiesTargetDir($cacheDir);
 
-        if (null !== $config['default_cache']) {
-            $container->setParameter('openclassrooms.service_proxy.default_cache', $config['default_cache']);
-        }
+        return $configuration;
     }
 
     /**

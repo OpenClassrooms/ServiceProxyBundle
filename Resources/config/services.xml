@@ -20,7 +20,7 @@
             </call>
         </service>
         <service id="openclassrooms.service_proxy.proxy.factory.service_proxy_factory" class="OpenClassrooms\ServiceProxy\Proxy\Factory\ProxyFactory" public="false">
-            <argument>%openclassrooms.service_proxy.cache_dir%</argument>
+            <argument>%openclassrooms.service_proxy.proxy_factory_configuration%</argument>
             <call method="setGenerator">
                 <argument type="service" id="openclassrooms.service_proxy.proxy.proxy_generator.service_proxy_generator"/>
             </call>
