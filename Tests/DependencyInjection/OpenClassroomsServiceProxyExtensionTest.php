@@ -84,7 +84,7 @@ class OpenClassroomsServiceProxyExtensionTest extends \PHPUnit_Framework_TestCas
     {
         $this->initContainer();
         $this->serviceLoader->load('services.xml');
-        $this->configLoader->load('environments_config.yml');
+        $this->configLoader->load('production_environments_config.yml');
         $this->container->setParameter('kernel.environment', 'test');
         $this->container->compile();
         $this->container->get('openclassrooms.service_proxy.tests.services.class_tagged_stub');

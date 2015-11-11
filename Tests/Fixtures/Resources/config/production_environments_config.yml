@@ -1,0 +1,2 @@
+openclassrooms_service_proxy:
+    production_environments: ['test', 'prod']

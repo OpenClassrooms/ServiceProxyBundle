@@ -1,2 +1,0 @@
-openclassrooms_service_proxy:
-    environments: ['test', 'prod']

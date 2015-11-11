@@ -23,7 +23,7 @@ class OpenClassroomsServiceProxyExtension extends Extension
             $container->getParameterBag()->resolveValue($config['cache_dir'])
         );
         $container->setParameter('openclassrooms.service_proxy.proxy_factory_configuration', $proxyConfiguration);
-        if (in_array($container->getParameter("kernel.environment"), $config['environments'])) {
+        if (in_array($container->getParameter("kernel.environment"), $config['production_environments'])) {
             spl_autoload_register($proxyConfiguration->getProxyAutoloader());
         }
         if (null !== $config['default_cache']) {
