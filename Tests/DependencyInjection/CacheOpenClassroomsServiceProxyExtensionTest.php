@@ -20,7 +20,7 @@ class CacheOpenClassroomsServiceProxyExtensionTest extends \PHPUnit_Framework_Te
     public function WithCacheConfigurationDefaultCache_CacheUseCase_ReturnUseCaseProxy()
     {
         $this->serviceLoader->load('cache_configuration_services.xml');
-        $this->configLoader->load('CacheConfiguration.yml');
+        $this->configLoader->load('cache_configuration.yml');
         $this->container->compile();
 
         /** @var ServiceProxyInterface|ServiceProxyCacheInterface $cacheService */
@@ -36,7 +36,7 @@ class CacheOpenClassroomsServiceProxyExtensionTest extends \PHPUnit_Framework_Te
     public function WithCacheConfigurationSpecificCache_CacheUseCase_ReturnUseCaseProxy()
     {
         $this->serviceLoader->load('cache_configuration_services.xml');
-        $this->configLoader->load('CacheConfiguration.yml');
+        $this->configLoader->load('cache_configuration.yml');
         $this->container->compile();
 
         /** @var CacheProviderDecorator $specificCache */

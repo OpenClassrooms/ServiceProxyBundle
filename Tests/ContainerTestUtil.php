@@ -47,6 +47,7 @@ trait ContainerTestUtil
         $this->container = new ContainerBuilder();
 
         $this->container->setParameter('kernel.cache_dir', self::$kernelCacheDir);
+        $this->container->setParameter('kernel.environment', 'test');
         $this->initDoctrineCacheBundle();
         $this->initDoctrineCacheExtensionBundle();
         $this->initServiceProxyBundle();
@@ -95,7 +96,7 @@ trait ContainerTestUtil
             $this->container,
             new FileLocator(__DIR__.'/Fixtures/Resources/config/')
         );
-        $this->configLoader->load('DefaultConfiguration.yml');
+        $this->configLoader->load('default_configuration.yml');
     }
 
     /**

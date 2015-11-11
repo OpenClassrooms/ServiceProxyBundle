@@ -26,6 +26,8 @@ class OpenClassroomsServiceProxyExtensionTest extends \PHPUnit_Framework_TestCas
         $fs->mkdir(self::$kernelCacheDir, 0000);
         $this->initContainer();
         $this->container->compile();
+        $fs->chmod(self::$kernelCacheDir, 7777);
+        $fs->remove(self::$kernelCacheDir);
     }
 
     /**
@@ -48,10 +50,64 @@ class OpenClassroomsServiceProxyExtensionTest extends \PHPUnit_Framework_TestCas
         $this->assertNotNull($actualClass->aMethod());
     }
 
+    /**
+     * @test
+     */
+    public function TestEnvironment_NotRegisteredLoader()
+    {
+        $this->initContainer();
+        $this->serviceLoader->load('services.xml');
+        $this->container->setParameter('kernel.environment', 'test');
+        $this->container->compile();
+        $this->container->get('openclassrooms.service_proxy.tests.services.class_tagged_stub');
+        $this->assertCount(1, spl_autoload_functions());
+        $this->assertNotInstanceOf('ProxyManager\Autoloader\AutoloaderInterface', spl_autoload_functions()[0]);
+    }
+
+    /**
+     * @test
+     */
+    public function DefaultEnvironment_RegisterLoader()
+    {
+        $this->initContainer();
+        $this->serviceLoader->load('services.xml');
+        $this->container->setParameter('kernel.environment', 'prod');
+        $this->container->compile();
+        $this->container->get('openclassrooms.service_proxy.tests.services.class_tagged_stub');
+        $this->assertInstanceOf('ProxyManager\Autoloader\AutoloaderInterface', spl_autoload_functions()[1]);
+    }
+
+    /**
+     * @test
+     */
+    public function Environment_RegisterLoader()
+    {
+        $this->initContainer();
+        $this->serviceLoader->load('services.xml');
+        $this->configLoader->load('environments_config.yml');
+        $this->container->setParameter('kernel.environment', 'test');
+        $this->container->compile();
+        $this->container->get('openclassrooms.service_proxy.tests.services.class_tagged_stub');
+        $this->assertInstanceOf('ProxyManager\Autoloader\AutoloaderInterface', spl_autoload_functions()[1]);
+    }
+
     protected function setUp()
     {
         $this->initContainer();
         $this->serviceLoader->load('services.xml');
         $this->container->compile();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function tearDown()
+    {
+        $fs = new Filesystem();
+        $fs->chmod(self::$kernelCacheDir, 0777);
+        $fs->remove(self::$kernelCacheDir);
+        if (isset(spl_autoload_functions()[1])) {
+            spl_autoload_unregister(spl_autoload_functions()[1]);
+        }
     }
 }

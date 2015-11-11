@@ -44,7 +44,7 @@ class ServiceProxyCacheWarmerTest extends \PHPUnit_Framework_TestCase
     {
         $this->initContainer();
         $this->serviceLoader->load('cache_configuration_services.xml');
-        $this->configLoader->load('CacheConfiguration.yml');
+        $this->configLoader->load('cache_configuration.yml');
         $this->container->compile();
 
         $serviceProxyCacheWarmer = new ServiceProxyCacheWarmer();
