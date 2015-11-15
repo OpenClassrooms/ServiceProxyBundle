@@ -6,6 +6,7 @@ use OpenClassrooms\Bundle\ServiceProxyBundle\Tests\ContainerTestUtil;
 use OpenClassrooms\DoctrineCacheExtension\CacheProviderDecorator;
 use OpenClassrooms\ServiceProxy\ServiceProxyCacheInterface;
 use OpenClassrooms\ServiceProxy\ServiceProxyInterface;
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
@@ -13,6 +14,21 @@ use OpenClassrooms\ServiceProxy\ServiceProxyInterface;
 class CacheOpenClassroomsServiceProxyExtensionTest extends \PHPUnit_Framework_TestCase
 {
     use ContainerTestUtil;
+
+    /**
+     * @test
+     * @expectedException \RuntimeException
+     */
+    public function NotWritable_ThrowException()
+    {
+        $fs = new Filesystem();
+        $fs->remove(self::$kernelCacheDir);
+        $fs->mkdir(self::$kernelCacheDir, 0000);
+        $this->initContainer();
+        $this->container->compile();
+        $fs->chmod(self::$kernelCacheDir, 7777);
+        $fs->remove(self::$kernelCacheDir);
+    }
 
     /**
      * @test

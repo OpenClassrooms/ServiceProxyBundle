@@ -25,7 +25,9 @@ class OpenClassroomsServiceProxyExtensionTest extends \PHPUnit_Framework_TestCas
         $fs->remove(self::$kernelCacheDir);
         $fs->mkdir(self::$kernelCacheDir, 0000);
         $this->initContainer();
+        $this->serviceLoader->load('services.xml');
         $this->container->compile();
+        $this->container->get('openclassrooms.service_proxy.tests.services.class_tagged_stub');
         $fs->chmod(self::$kernelCacheDir, 7777);
         $fs->remove(self::$kernelCacheDir);
     }
@@ -99,13 +101,15 @@ class OpenClassroomsServiceProxyExtensionTest extends \PHPUnit_Framework_TestCas
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function tearDown()
     {
         $fs = new Filesystem();
-        $fs->chmod(self::$kernelCacheDir, 0777);
-        $fs->remove(self::$kernelCacheDir);
+        if ($fs->exists(self::$kernelCacheDir)) {
+            $fs->chmod(self::$kernelCacheDir, 0777);
+            $fs->remove(self::$kernelCacheDir);
+        }
         if (isset(spl_autoload_functions()[1])) {
             spl_autoload_unregister(spl_autoload_functions()[1]);
         }

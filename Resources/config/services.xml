@@ -8,6 +8,13 @@
                 <argument type="service" id="openclassrooms.service_proxy.proxy.strategy.response.service_proxy_strategy_response_builder"/>
             </call>
         </service>
+        <service id="openclassrooms.service_proxy.services.configuration_factory" class="OpenClassrooms\Bundle\ServiceProxyBundle\Services\Proxy\ConfigurationFactory" public="false"/>
+
+        <service id="openclassrooms.service_proxy.proxy_factory_configuration" class="ProxyManager\Configuration" public="false">
+            <factory service="openclassrooms.service_proxy.services.configuration_factory" method="create"/>
+            <argument>%openclassrooms.service_proxy.cache_dir%</argument>
+            <argument>%openclassrooms.service_proxy.dump_autoload%</argument>
+        </service>
         <service id="openclassrooms.service_proxy.proxy.proxy_generator.service_proxy_generator" class="OpenClassrooms\ServiceProxy\Proxy\ProxyGenerator\ServiceProxyGenerator" public="false">
             <call method="setAnnotationReader">
                 <argument type="service" id="annotations.reader"/>
@@ -20,7 +27,7 @@
             </call>
         </service>
         <service id="openclassrooms.service_proxy.proxy.factory.service_proxy_factory" class="OpenClassrooms\ServiceProxy\Proxy\Factory\ProxyFactory" public="false">
-            <argument>%openclassrooms.service_proxy.proxy_factory_configuration%</argument>
+            <argument type="service" id="openclassrooms.service_proxy.proxy_factory_configuration"/>
             <call method="setGenerator">
                 <argument type="service" id="openclassrooms.service_proxy.proxy.proxy_generator.service_proxy_generator"/>
             </call>

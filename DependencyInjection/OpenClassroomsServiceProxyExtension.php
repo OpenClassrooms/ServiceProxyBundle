@@ -2,7 +2,6 @@
 
 namespace OpenClassrooms\Bundle\ServiceProxyBundle\DependencyInjection;
 
-use ProxyManager\Configuration as ProxyConfiguration;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
@@ -19,32 +18,23 @@ class OpenClassroomsServiceProxyExtension extends Extension
         $loader->load('services.xml');
         $config = $this->processConfiguration(new Configuration(), $config);
 
-        $proxyConfiguration = $this->buildProxyConfiguration(
+        $this->setParameters($config, $container);
+    }
+
+    private function setParameters(array $config, ContainerBuilder $container)
+    {
+        $container->setParameter(
+            'openclassrooms.service_proxy.cache_dir',
             $container->getParameterBag()->resolveValue($config['cache_dir'])
         );
-        $container->setParameter('openclassrooms.service_proxy.proxy_factory_configuration', $proxyConfiguration);
-        if (in_array($container->getParameter("kernel.environment"), $config['production_environments'])) {
-            spl_autoload_register($proxyConfiguration->getProxyAutoloader());
+        if (in_array($container->getParameter('kernel.environment'), $config['production_environments'])) {
+            $container->setParameter('openclassrooms.service_proxy.dump_autoload', true);
+        } else {
+            $container->setParameter('openclassrooms.service_proxy.dump_autoload', false);
         }
         if (null !== $config['default_cache']) {
             $container->setParameter('openclassrooms.service_proxy.default_cache', $config['default_cache']);
         }
-    }
-
-    /**
-     * @return ProxyConfiguration
-     */
-    private function buildProxyConfiguration($cacheDir)
-    {
-        if (!is_dir($cacheDir)) {
-            if (false === @mkdir($cacheDir, 0777, true)) {
-                throw new \RuntimeException(sprintf('Could not create cache directory "%s".', $cacheDir));
-            }
-        }
-        $configuration = new ProxyConfiguration();
-        $configuration->setProxiesTargetDir($cacheDir);
-
-        return $configuration;
     }
 
     /**
