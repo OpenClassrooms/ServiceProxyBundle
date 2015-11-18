@@ -3,6 +3,16 @@
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/68f0b7d3-8e1f-4f8c-a84d-4c72f4cec6d1/mini.png)](https://insight.sensiolabs.com/projects/68f0b7d3-8e1f-4f8c-a84d-4c72f4cec6d1)
 [![Coverage Status](https://coveralls.io/repos/OpenClassrooms/ServiceProxyBundle/badge.svg?branch=master&service=github)](https://coveralls.io/github/OpenClassrooms/ServiceProxyBundle?branch=master)
 
+The ServiceProxyBundle provides integration of the ServiceProxy library.
+ServiceProxy provides facilities to manage technical code over a class:
+    - Transactional context (not implemented yet)
+    - Security access (not implemented yet)
+    - Cache management
+    - Events (not implemented yet)
+    - Logs (not implemented yet)
+    
+See [ServiceProxy](https://github.com/OpenClassrooms/ServiceProxy) for full details.
+
 ## Installation
 This bundle can be installed using composer:
 
