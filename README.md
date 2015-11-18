@@ -133,7 +133,7 @@ The bundle uses the symfony cache warmup to dump the proxies files.
 
 openclassrooms_service_proxy:
     # the directory where the proxy are written
-    cache_dir : "/a/path/to/the/cache/directory # default: %kernel.cache_dir% 
+    cache_dir : "/a/path/to/the/cache/directory" # default: %kernel.cache_dir% 
     
     # the default cache provider (optional)
     default_cache: doctrine_cache.providers.a_cache_provider # default: null
