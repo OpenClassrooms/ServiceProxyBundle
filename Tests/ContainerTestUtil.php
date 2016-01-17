@@ -68,7 +68,7 @@ trait ContainerTestUtil
     {
         $doctrineCacheExtensionExtension = new OpenClassroomsDoctrineCacheExtensionExtension();
         $this->container->registerExtension($doctrineCacheExtensionExtension);
-        $this->container->loadFromExtension('doctrine_cache');
+        $this->container->loadFromExtension('doctrine_cache_extension');
         $bundle = new OpenClassroomsDoctrineCacheExtensionBundle();
         $bundle->build($this->container);
     }
