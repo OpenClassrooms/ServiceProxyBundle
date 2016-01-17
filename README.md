@@ -3,20 +3,20 @@
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/68f0b7d3-8e1f-4f8c-a84d-4c72f4cec6d1/mini.png)](https://insight.sensiolabs.com/projects/68f0b7d3-8e1f-4f8c-a84d-4c72f4cec6d1)
 [![Coverage Status](https://coveralls.io/repos/OpenClassrooms/ServiceProxyBundle/badge.svg?branch=master&service=github)](https://coveralls.io/github/OpenClassrooms/ServiceProxyBundle?branch=master)
 
-The ServiceProxyBundle provides integration of the ServiceProxy library.
-ServiceProxy provides facilities to manage technical code over a class:
-    - Transactional context (not implemented yet)
-    - Security access (not implemented yet)
-    - Cache management
-    - Events (not implemented yet)
-    - Logs (not implemented yet)
+The ServiceProxyBundle provides integration of the ServiceProxy library.  
+ServiceProxy provides facilities to manage technical code over a class:  
+* Transactional context (not implemented yet)
+* Security access (not implemented yet)
+* Cache management
+* Events (not implemented yet)
+* Logs (not implemented yet)
     
 See [ServiceProxy](https://github.com/OpenClassrooms/ServiceProxy) for full details.
 
 ## Installation
-This bundle can be installed using composer:
+This bundle can be installed using composer:  
 
-```composer require openclassrooms/service-proxy-bundle```
+```composer require openclassrooms/service-proxy-bundle```  
 or by adding the package to the composer.json file directly.
 
 ```json
@@ -38,7 +38,7 @@ $bundles = array(
 );
 ```
 
-:warning: The usage of cache capabilities requires the installation of the [openclassrooms/doctrine-cache-extension-bundle](https://github.com/OpenClassrooms/DoctrineCacheExtensionBundle).
+:warning: The usage of cache capabilities requires the installation of the  [openclassrooms/doctrine-cache-extension-bundle](https://github.com/OpenClassrooms/DoctrineCacheExtensionBundle).  
 See the [openclassrooms/doctrine-cache-extension-bundle installation guide](https://github.com/OpenClassrooms/DoctrineCacheExtensionBundle#installation)for more details.
 
 ## Configuration
@@ -58,7 +58,7 @@ openclassrooms_service_proxy: ~
 
 ### Cache
 
-Use the Cache annotation.
+Use the Cache annotation.  
 See [Service Proxy Cache](https://github.com/OpenClassrooms/ServiceProxy#cache) for more details.
 
 ``` php
@@ -114,7 +114,7 @@ openclassrooms_service_proxy:
 ## Performance
 
 ### Autoloader
-The usage of a proxy require a lot of I/O. See [Ocramius\ProxyManager Tunning for production](https://ocramius.github.io/ProxyManager/docs/tuning-for-production.html).
+The usage of a proxy require a lot of I/O. See [Ocramius\ProxyManager Tunning for production](https://ocramius.github.io/ProxyManager/docs/tuning-for-production.html).  
 It's possible to specify the environments where the proxy autoloader is used.
 
 ``` yaml
@@ -125,7 +125,7 @@ openclassrooms_service_proxy:
 ```
 
 ### Cache Warmup
-The bundle use the symfony cache warmup to dump the proxies files. 
+The bundle uses the symfony cache warmup to dump the proxies files. 
 
 ## Full configuration
 
@@ -133,7 +133,7 @@ The bundle use the symfony cache warmup to dump the proxies files.
 
 openclassrooms_service_proxy:
     # the directory where the proxy are written
-    cache_dir : "/a/path/to/the/cache/directory # default: %kernel.cache_dir% 
+    cache_dir : "/a/path/to/the/cache/directory" # default: %kernel.cache_dir% 
     
     # the default cache provider (optional)
     default_cache: doctrine_cache.providers.a_cache_provider # default: null
