@@ -3,8 +3,8 @@
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/68f0b7d3-8e1f-4f8c-a84d-4c72f4cec6d1/mini.png)](https://insight.sensiolabs.com/projects/68f0b7d3-8e1f-4f8c-a84d-4c72f4cec6d1)
 [![Coverage Status](https://coveralls.io/repos/OpenClassrooms/ServiceProxyBundle/badge.svg?branch=master&service=github)](https://coveralls.io/github/OpenClassrooms/ServiceProxyBundle?branch=master)
 
-The ServiceProxyBundle provides integration of the ServiceProxy library.  
-ServiceProxy provides facilities to manage technical code over a class:  
+The ServiceProxyBundle offers integration of the ServiceProxy library.  
+ServiceProxy provides functionality to manage technical code over a class:  
 * Transactional context (not implemented yet)
 * Security access (not implemented yet)
 * Cache management
@@ -125,7 +125,7 @@ openclassrooms_service_proxy:
 ```
 
 ### Cache Warmup
-The bundle uses the symfony cache warmup to dump the proxies files. 
+The bundle uses the Symfony cache warmup to dump the proxies files. 
 
 ## Full configuration
 
