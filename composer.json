@@ -29,16 +29,16 @@
     "openclassrooms/service-proxy" : "1.0.*@dev",
     "openclassrooms/doctrine-cache-extension": "1.0.*@dev",
     "openclassrooms/doctrine-cache-extension-bundle": "1.0.*@dev",
-    "symfony/dependency-injection": "~2.7",
-    "symfony/config": "~2.7",
-    "symfony/http-kernel": "~2.7",
-    "symfony/security": "~2.7",
-    "symfony/event-dispatcher": "~2.7"
+    "symfony/dependency-injection": ">=2.7 <4",
+    "symfony/config": ">=2.7 <4",
+    "symfony/http-kernel": ">=2.7 <4",
+    "symfony/security": ">=2.7 <4",
+    "symfony/event-dispatcher": ">=2.7 <4"
   },
   "require-dev": {
     "fabpot/php-cs-fixer": "1.*",
     "mockery/mockery": "dev-master",
-    "phpunit/phpunit": "~4.0",
+    "phpunit/phpunit": "~5.0",
     "satooshi/php-coveralls": "dev-master"
   },
   "extra": {
