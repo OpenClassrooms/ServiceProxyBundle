@@ -39,7 +39,7 @@
             </call>
         </service>
 
-        <service id="openclassrooms.service_proxy.service_proxy_factory" class="OpenClassrooms\Bundle\ServiceProxyBundle\Services\Proxy\ServiceProxyFactory" scope="prototype">
+        <service id="openclassrooms.service_proxy.service_proxy_factory" class="OpenClassrooms\Bundle\ServiceProxyBundle\Services\Proxy\ServiceProxyFactory">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
