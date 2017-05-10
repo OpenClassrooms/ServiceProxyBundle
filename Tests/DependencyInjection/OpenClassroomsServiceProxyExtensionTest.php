@@ -55,6 +55,17 @@ class OpenClassroomsServiceProxyExtensionTest extends \PHPUnit_Framework_TestCas
     /**
      * @test
      */
+    public function ClassTaggedWithDependencyOnPrivateServiceViaAnAlias_ReturnProxy()
+    {
+        /** @var ServiceProxyInterface|ClassTaggedStub $actualClass */
+        $actualClass = $this->container->get('openclassrooms.service_proxy.tests.services.class_tagged_stub_with_alias_on_private_service');
+        $this->assertServiceProxy($actualClass);
+        $this->assertNotNull($actualClass->aMethod());
+    }
+
+    /**
+     * @test
+     */
     public function TestEnvironment_NotRegisteredLoader()
     {
         $this->initContainer();
