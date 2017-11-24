@@ -1,9 +1,17 @@
 <container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="openclassrooms.service_proxy.tests.services.class_stub" class="OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services\ClassStub"/>
+        <service id="openclassrooms.service_proxy.tests.services.private.class_stub" class="OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services\ClassStub" public="false"/>
+        <service id="openclassrooms.service_proxy.tests.services.public.class_stub" alias="openclassrooms.service_proxy.tests.services.private.class_stub"/>
         <service id="openclassrooms.service_proxy.tests.services.class_tagged_stub" class="OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services\ClassTaggedStub">
             <call method="setAnInjectedParameter">
                 <argument type="service" id="openclassrooms.service_proxy.tests.services.class_stub"/>
+            </call>
+            <tag name="openclassrooms.service_proxy"/>
+        </service>
+        <service id="openclassrooms.service_proxy.tests.services.class_tagged_stub_with_alias_on_private_service" class="OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services\ClassTaggedStub">
+            <call method="setAnInjectedParameter">
+                <argument type="service" id="openclassrooms.service_proxy.tests.services.public.class_stub"/>
             </call>
             <tag name="openclassrooms.service_proxy"/>
         </service>
