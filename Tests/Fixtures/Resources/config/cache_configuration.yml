@@ -6,3 +6,4 @@ doctrine_cache:
             type: array
 openclassrooms_service_proxy:
     default_cache: doctrine_cache.providers.default_array_cache
+    production_environments: [test]
