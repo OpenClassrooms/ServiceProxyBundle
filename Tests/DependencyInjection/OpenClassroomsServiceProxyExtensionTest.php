@@ -6,12 +6,13 @@ use OpenClassrooms\Bundle\ServiceProxyBundle\Tests\ContainerTestUtil;
 use OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services\ClassStub;
 use OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services\ClassTaggedStub;
 use OpenClassrooms\ServiceProxy\ServiceProxyInterface;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
  */
-class OpenClassroomsServiceProxyExtensionTest extends \PHPUnit_Framework_TestCase
+class OpenClassroomsServiceProxyExtensionTest extends TestCase
 {
     use ContainerTestUtil;
 
@@ -58,7 +59,9 @@ class OpenClassroomsServiceProxyExtensionTest extends \PHPUnit_Framework_TestCas
     public function ClassTaggedWithDependencyOnPrivateServiceViaAnAlias_ReturnProxy()
     {
         /** @var ServiceProxyInterface|ClassTaggedStub $actualClass */
-        $actualClass = $this->container->get('openclassrooms.service_proxy.tests.services.class_tagged_stub_with_alias_on_private_service');
+        $actualClass = $this->container->get(
+            'openclassrooms.service_proxy.tests.services.class_tagged_stub_with_alias_on_private_service'
+        );
         $this->assertServiceProxy($actualClass);
         $this->assertNotNull($actualClass->aMethod());
     }
