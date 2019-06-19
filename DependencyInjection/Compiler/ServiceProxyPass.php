@@ -4,7 +4,6 @@ namespace OpenClassrooms\Bundle\ServiceProxyBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\Compiler;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
-use Symfony\Component\DependencyInjection\Compiler\LoggingFormatter;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
@@ -15,25 +14,19 @@ use Symfony\Component\DependencyInjection\Reference;
 class ServiceProxyPass implements CompilerPassInterface
 {
     /**
-     * @var ContainerBuilder
-     */
-    private $container;
-
-    /**
      * @var Compiler
      */
     private $compiler;
 
     /**
-     * @var LoggingFormatter
+     * @var ContainerBuilder
      */
-    private $formatter;
+    private $container;
 
     public function process(ContainerBuilder $container)
     {
         $this->container = $container;
         $this->compiler = $container->getCompiler();
-        $this->formatter = $this->compiler->getLoggingFormatter();
 
         $this->buildServiceProxies();
     }
@@ -46,7 +39,7 @@ class ServiceProxyPass implements CompilerPassInterface
         foreach ($taggedServices as $taggedServiceName => $tagParameters) {
             $this->buildServiceProxyFactoryDefinition($taggedServiceName, $tagParameters);
             $serviceProxyIds[] = $taggedServiceName;
-            $this->compiler->addLogMessage($this->formatter->format($this, 'Add proxy for ' . $taggedServiceName . ' service.'));
+            $this->compiler->log($this, 'Add proxy for ' . $taggedServiceName . ' service.');
         }
         $this->container->setParameter('openclassrooms.service_proxy.service_proxy_ids', $serviceProxyIds);
     }
