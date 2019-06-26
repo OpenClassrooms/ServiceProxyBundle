@@ -1,10 +1,20 @@
 language: php
 
 php:
-  - "7.0"
   - "7.1"
+  - "7.3"
+
+env:
+  - SYMFONY_VERSION=3.4.*
+  - SYMFONY_VERSION=4.3.*
 
 before_script:
+  - composer self-update
+  - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/dependency-injection:${SYMFONY_VERSION}" --no-update; fi;
+  - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/config:${SYMFONY_VERSION}" --no-update; fi;
+  - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/http-kernel:${SYMFONY_VERSION}" --no-update; fi;
+  - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/event-dispatcher:${SYMFONY_VERSION}" --no-update; fi;
+  - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/yaml:${SYMFONY_VERSION}" --no-update; fi;
   - composer install --no-scripts --no-interaction
   - composer dump-autoload -o
 
