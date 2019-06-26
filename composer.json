@@ -27,7 +27,7 @@
     "php": ">=7.1",
     "openclassrooms/service-proxy" : "~1.0",
     "openclassrooms/doctrine-cache-extension": "1.0.*@dev",
-    "openclassrooms/doctrine-cache-extension-bundle": "1.0.*@dev",
+    "openclassrooms/doctrine-cache-extension-bundle": "2.0.*@dev",
     "symfony/dependency-injection": "~3.4 || ~4.0",
     "symfony/config": "~3.4 || ~4.0",
     "symfony/http-kernel": "~3.4 || ~4.0",
