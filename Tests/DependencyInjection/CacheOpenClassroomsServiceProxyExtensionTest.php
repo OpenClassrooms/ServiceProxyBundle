@@ -6,12 +6,13 @@ use OpenClassrooms\Bundle\ServiceProxyBundle\Tests\ContainerTestUtil;
 use OpenClassrooms\DoctrineCacheExtension\CacheProviderDecorator;
 use OpenClassrooms\ServiceProxy\ServiceProxyCacheInterface;
 use OpenClassrooms\ServiceProxy\ServiceProxyInterface;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
  */
-class CacheOpenClassroomsServiceProxyExtensionTest extends \PHPUnit_Framework_TestCase
+class CacheOpenClassroomsServiceProxyExtensionTest extends TestCase
 {
     use ContainerTestUtil;
 

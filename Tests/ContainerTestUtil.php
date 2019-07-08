@@ -10,7 +10,7 @@ use OpenClassrooms\Bundle\ServiceProxyBundle\OpenClassroomsServiceProxyBundle;
 use OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services\CacheClassStub;
 use OpenClassrooms\ServiceProxy\ServiceProxyCacheInterface;
 use OpenClassrooms\ServiceProxy\ServiceProxyInterface;
-use PHPUnit_Framework_Assert as Assert;
+use PHPUnit\Framework\Assert;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
@@ -23,9 +23,9 @@ use Symfony\Component\Filesystem\Filesystem;
 trait ContainerTestUtil
 {
     /**
-     * @var string
+     * @var YamlFileLoader
      */
-    protected static $kernelCacheDir = __DIR__.'/cache';
+    protected $configLoader;
 
     /**
      * @var ContainerBuilder
@@ -33,9 +33,9 @@ trait ContainerTestUtil
     protected $container;
 
     /**
-     * @var YamlFileLoader
+     * @var string
      */
-    protected $configLoader;
+    protected static $kernelCacheDir = __DIR__ . '/cache';
 
     /**
      * @var XmlFileLoader
@@ -85,7 +85,7 @@ trait ContainerTestUtil
     private function initServiceLoader()
     {
         $this->serviceLoader = new XmlFileLoader(
-            $this->container, new FileLocator(__DIR__.'/Fixtures/Resources/config')
+            $this->container, new FileLocator(__DIR__ . '/Fixtures/Resources/config')
         );
         $this->serviceLoader->load('default_services.xml');
     }
@@ -94,7 +94,7 @@ trait ContainerTestUtil
     {
         $this->configLoader = new YamlFileLoader(
             $this->container,
-            new FileLocator(__DIR__.'/Fixtures/Resources/config/')
+            new FileLocator(__DIR__ . '/Fixtures/Resources/config/')
         );
         $this->configLoader->load('default_configuration.yml');
     }

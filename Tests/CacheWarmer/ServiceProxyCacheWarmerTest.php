@@ -4,13 +4,14 @@ namespace CacheWarmer;
 
 use OpenClassrooms\Bundle\ServiceProxyBundle\CacheWarmer\ServiceProxyCacheWarmer;
 use OpenClassrooms\Bundle\ServiceProxyBundle\Tests\ContainerTestUtil;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
  */
-class ServiceProxyCacheWarmerTest extends \PHPUnit_Framework_TestCase
+class ServiceProxyCacheWarmerTest extends TestCase
 {
     use ContainerTestUtil;
 
@@ -36,7 +37,7 @@ class ServiceProxyCacheWarmerTest extends \PHPUnit_Framework_TestCase
         $serviceProxyCacheWarmer->warmUp(self::$kernelCacheDir);
 
         $fs = new Filesystem();
-        $this->assertFalse($fs->exists(self::$kernelCacheDir.'/openclassrooms_service_proxy'));
+        $this->assertFalse($fs->exists(self::$kernelCacheDir . '/openclassrooms_service_proxy'));
     }
 
     /**
@@ -53,6 +54,6 @@ class ServiceProxyCacheWarmerTest extends \PHPUnit_Framework_TestCase
         $serviceProxyCacheWarmer->setContainer($this->container);
         $serviceProxyCacheWarmer->warmUp(self::$kernelCacheDir);
 
-        $this->assertEquals(1, Finder::create()->in(self::$kernelCacheDir.'/openclassrooms_service_proxy')->count());
+        $this->assertEquals(1, Finder::create()->in(self::$kernelCacheDir . '/openclassrooms_service_proxy')->count());
     }
 }

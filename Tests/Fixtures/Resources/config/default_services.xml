@@ -1,6 +1,6 @@
 <container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="annotations.reader" class="Doctrine\Common\Annotations\AnnotationReader"/>
-        <service id="openclassrooms.service_proxy.tests.services.class_stub" class="OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services\ClassStub"/>
+        <service id="openclassrooms.service_proxy.tests.services.class_stub" class="OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services\ClassStub" public="true"/>
     </services>
 </container>
