@@ -25,7 +25,7 @@
   },
   "require": {
     "php": ">=7.1",
-    "openclassrooms/service-proxy" : "~1.0",
+    "openclassrooms/service-proxy" : "2.0",
     "openclassrooms/doctrine-cache-extension": "1.0.*@dev",
     "openclassrooms/doctrine-cache-extension-bundle": "2.0.*@dev",
     "symfony/dependency-injection": "~3.4 || ~4.0",
