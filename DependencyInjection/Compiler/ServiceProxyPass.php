@@ -51,6 +51,7 @@ class ServiceProxyPass implements CompilerPassInterface
         $factoryDefinition = new Definition();
         $factoryDefinition->setFactory([new Reference('openclassrooms.service_proxy.service_proxy_factory'), 'create']);
         $factoryDefinition->setArguments([$definition, $tagParameters[0]]);
+        $factoryDefinition->setTags($definition->getTags());
         $this->container->setDefinition($taggedServiceName, $factoryDefinition);
         $factoryDefinition->setPublic($definition->isPublic());
     }
