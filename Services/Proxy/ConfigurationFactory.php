@@ -5,6 +5,7 @@ namespace OpenClassrooms\Bundle\ServiceProxyBundle\Services\Proxy;
 use ProxyManager\Configuration;
 use ProxyManager\FileLocator\FileLocator;
 use ProxyManager\GeneratorStrategy\FileWriterGeneratorStrategy;
+use OpenClassrooms\ServiceProxy\Proxy\ProxyGenerator\Strategy\TmpFileGeneratorStrategy;
 
 /**
  * @author Romain Kuzniak <romain.kuzniak@openclassrooms.com>
@@ -29,6 +30,8 @@ class ConfigurationFactory implements ConfigurationFactoryInterface
                 new FileWriterGeneratorStrategy(new FileLocator($cacheDir))
             );
             spl_autoload_register($configuration->getProxyAutoloader());
+        } else {
+            $configuration->setGeneratorStrategy(new TmpFileGeneratorStrategy($cacheDir));
         }
 
         return $configuration;
