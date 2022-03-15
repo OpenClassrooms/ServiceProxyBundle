@@ -15,8 +15,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('openclassrooms_service_proxy');
+        $treeBuilder = new TreeBuilder('openclassrooms_service_proxy');
+        $rootNode = $treeBuilder->getRootNode();
         $rootNode->children()
             ->scalarNode('cache_dir')->cannotBeEmpty()->defaultValue('%kernel.cache_dir%/openclassrooms_service_proxy')
             ->end()
