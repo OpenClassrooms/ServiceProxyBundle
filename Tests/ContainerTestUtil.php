@@ -2,10 +2,6 @@
 
 namespace OpenClassrooms\Bundle\ServiceProxyBundle\Tests;
 
-use Doctrine\Bundle\DoctrineCacheBundle\DependencyInjection\DoctrineCacheExtension;
-use Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle;
-use OpenClassrooms\Bundle\DoctrineCacheExtensionBundle\DependencyInjection\OpenClassroomsDoctrineCacheExtensionExtension;
-use OpenClassrooms\Bundle\DoctrineCacheExtensionBundle\OpenClassroomsDoctrineCacheExtensionBundle;
 use OpenClassrooms\Bundle\ServiceProxyBundle\OpenClassroomsServiceProxyBundle;
 use OpenClassrooms\Bundle\ServiceProxyBundle\Tests\Fixtures\Services\CacheClassStub;
 use OpenClassrooms\ServiceProxy\ServiceProxyCacheInterface;
@@ -48,29 +44,9 @@ trait ContainerTestUtil
 
         $this->container->setParameter('kernel.cache_dir', self::$kernelCacheDir);
         $this->container->setParameter('kernel.environment', 'test');
-        $this->initDoctrineCacheBundle();
-        $this->initDoctrineCacheExtensionBundle();
         $this->initServiceProxyBundle();
         $this->initServiceLoader();
         $this->initConfigLoader();
-    }
-
-    private function initDoctrineCacheBundle()
-    {
-        $doctrineCacheExtension = new DoctrineCacheExtension();
-        $this->container->registerExtension($doctrineCacheExtension);
-        $this->container->loadFromExtension('doctrine_cache');
-        $bundle = new DoctrineCacheBundle();
-        $bundle->build($this->container);
-    }
-
-    private function initDoctrineCacheExtensionBundle()
-    {
-        $doctrineCacheExtensionExtension = new OpenClassroomsDoctrineCacheExtensionExtension();
-        $this->container->registerExtension($doctrineCacheExtensionExtension);
-        $this->container->loadFromExtension('doctrine_cache_extension');
-        $bundle = new OpenClassroomsDoctrineCacheExtensionBundle();
-        $bundle->build($this->container);
     }
 
     private function initServiceProxyBundle()
