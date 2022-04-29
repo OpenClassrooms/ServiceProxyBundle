@@ -57,12 +57,12 @@ class CacheOpenClassroomsServiceProxyExtensionTest extends TestCase
         $this->container->compile();
 
         /** @var CacheProviderDecorator $specificCache */
-        $specificCache = $this->container->get('doctrine_cache.providers.specific_array_cache');
+        $specificCache = $this->container->get('openclassrooms.service_proxy.tests.cache.specific');
         $specificCache->save('test', 'data');
 
         /** @var ServiceProxyInterface|ServiceProxyCacheInterface $cacheService */
         $cacheService = $this->container->get(
-            'openclassrooms.service_proxy.tests.configuration_sepecific_cache_class_stub'
+            'openclassrooms.service_proxy.tests.configuration_specific_cache_class_stub'
         );
 
         $this->assertServiceProxy($cacheService);
